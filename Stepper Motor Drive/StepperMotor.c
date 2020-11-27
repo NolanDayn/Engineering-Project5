@@ -25,7 +25,7 @@ uint16_t TakeAStep(int16_t stepAmount){
 
 void InitStepper(){
 	
-	//Enable GPIO Clock for port E
+	//Enable GPIO Clock for port C
 	RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 	
 	//Enable PE12 to PE15 for GPIO output use in stepper motor driver L293D //PC0 to PC3 CN7-35 to 38
