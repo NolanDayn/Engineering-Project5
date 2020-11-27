@@ -20,7 +20,7 @@
 // delay count between changing LED states
 #define DELAY_COUNT 1000000UL
 
-#if 0
+#if 1
 
 int main(void){
 
@@ -41,7 +41,7 @@ int main(void){
 #endif
 
 
-#if 1
+#if 0
 
 int main(void){
 
