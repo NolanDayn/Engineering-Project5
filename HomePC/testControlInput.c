@@ -20,10 +20,9 @@ struct js_event{
 
 int main(){
 
-    const char* joystickFile = "/dev/input/js1";
+    const char* joystickFile = "/dev/input/js2";
 
     int fd = open(joystickFile, O_RDONLY);
-
     if( fd < 0){
         printf("%s\n", joystickFile);
     }
@@ -36,7 +35,7 @@ int main(){
     while(1){
         read(fd, &e, sizeof(e));
 
-        //printf("%d %d %d %d\n", e.time, e.value, e.type, e.number);
+        printf("%d %d %d %d\n", e.time, e.value, e.type, e.number);
 
         if(e.type == JS_EVENT_BUTTON || e.type == JS_EVENT_AXIS){
             
