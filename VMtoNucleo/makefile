@@ -1,15 +1,11 @@
 CXX = gcc
-CXXFLAGS = -g -Wall -Werror -Wshadow
-OBJECTS = VMtoNucleo.o SerialConfig.o 
-EXEC = VMtoNucleo
+CXXFLAGS = -g -Wall -Werror -Wshadow -lpthread -pthread
+EXEC = Lab_Server
 
-all: clean VMtoNucleo
+all: clean Lab_Server
 
-VMtoNucleo: ${OBJECTS} 
-	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC}
-
-SerialConfig.o:
-	${CXX} -c ${CXXFLAGS} SerialConfig.c -o SerialConfig.o
+Lab_Server:
+	${CXX} ${CXXFLAGS} Lab_Server.c -o ${EXEC}
 
 clean:
-	rm -rf ${OBJECTS} ${EXEC}
+	rm -f ${OBJECTS} ${EXEC}
