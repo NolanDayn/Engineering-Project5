@@ -9,6 +9,7 @@ void 		UART2_GPIO_Init(void);
 void 		USART_Init(USART_TypeDef * USARTx);
 void 		USART_Write(USART_TypeDef * USARTx, uint8_t *buffer, uint32_t nBytes);
 uint8_t USART_Read(USART_TypeDef * USARTx);
+void 		USART_Read_Cmd(USART_TypeDef * USARTx, char* cmd, uint8_t cmd_length);
 void 		USART_Delay(uint32_t us);
 
 #define BAUD_RATE 9600

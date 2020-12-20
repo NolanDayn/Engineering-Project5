@@ -20,7 +20,7 @@
 // delay count between changing LED states
 #define DELAY_COUNT 1000000UL
 
-#if 1
+#if 0
 
 int main(void){
 
@@ -41,7 +41,7 @@ int main(void){
 #endif
 
 
-#if 0
+#if 1
 
 int main(void){
 
@@ -51,8 +51,8 @@ int main(void){
 	LED_Init();
 	UART2_Init();
 	
-		printf("\r\n\r\nSTM32F303RE Nucleo-64 LED & Virtual Com port demo\r\n");
-		printf("LED is On\r\n\r\n");
+		//printf("\r\n\r\nSTM32F303RE Nucleo-64 LED & Virtual Com port demo\r\n");
+		//printf("LED is On\r\n\r\n");
 		Green_LED_On();	
 	
 //printf("0");	
@@ -60,13 +60,14 @@ int main(void){
 						
 	while (1){
 		
-		printf("Give Green LED control input (Y = On, N = off):\r\n");
+		char cmd[5];
+		char rxByte;
+		USART_Read_Cmd (USART2, cmd, 5);
+
 		
-		char rxByte = getchar();
+		printf("%c%c%c%c%c\n", cmd[0], cmd[1], cmd[2], cmd[3], cmd[4]);
 
-
-		printf("%c\n", rxByte);
-
+		for(int i = 0; i < 1000000; i++){}
 		
 	} // while
 	

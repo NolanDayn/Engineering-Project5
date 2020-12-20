@@ -113,6 +113,28 @@ void USART_Init (USART_TypeDef * USARTx) {
 	while ( (USARTx->ISR & USART_ISR_REACK) == 0); // Verify that the USART is ready for transmission
 }
 
+void USART_Read_Cmd(USART_TypeDef * USARTx, char* cmd, uint8_t cmd_length){
+	
+	for(int i = 0; i < cmd_length; i++){
+		cmd[i] = USART2_Buffer_Rx[i];
+		//move the buffer counter back a spot
+		if(pRx_Counter > 0){
+			pRx_Counter--;
+		}
+	}
+		
+	//shift whole buffer down to remove first item
+	for(int i = cmd_length; i < BufferSize; i++){ 
+		USART2_Buffer_Rx[i-cmd_length] = USART2_Buffer_Rx[i];
+		
+		if(pRx_Counter > 0){
+			pRx_Counter--;
+		}
+	}
+	
+	return;
+}	
+
 uint8_t USART_Read (USART_TypeDef * USARTx) {
 	volatile uint8_t RxByte;
 	// SR_RXNE (Read data register not empty) bit is set by hardware
