@@ -23,6 +23,32 @@ uint16_t TakeAStep(int16_t stepAmount){
 	return stepState;
 }
 
+void InitStepperLimits(){
+	//Enable GPIO Clock for port C
+	RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
+	
+		for(int i = 5; i <=6; i++){
+			//Enable PC.5 and PC.6 as inputs
+			GPIOC->MODER &= ~(3UL<<(2*i));  //  Input(00)
+			
+			// GPIO Push-Pull: No pull-up, pull-down (00), Pull-up (01), Pull-down (10), Reserved (11)
+			//GPIOC->PUPDR &= ~(3UL<<(2*i));  // Pull-up(01)
+			//GPIOC->PUPDR |= (1UL<<(2*i));
+			
+			GPIOC->PUPDR   &= ~(3UL<<(2*i));  // No pull-up, no pull-down
+		}
+}
+
+int LeftLimitHit(){
+	int hit = (GPIOC->IDR & GPIO_IDR_6) >> 6;
+	return hit;
+}
+
+int RightLimitHit(){
+	int hit = (GPIOC->IDR & GPIO_IDR_5) >> 5;
+	return hit;
+}
+
 void InitStepper(){
 	
 	//Enable GPIO Clock for port C

@@ -28,9 +28,12 @@ int main(void){
 	SystemCoreClockUpdate();
 	LED_Init();						// Init GPIO bits to drive LEDs
   InitStepper();
+	InitStepperLimits();
 	
 	for(;;) {	
-		TakeAStep(-1);
+		TakeAStep(1);
+		int left = LeftLimitHit();
+		int right = RightLimitHit();
 		for( uint32_t i = 0; i < DELAY_COUNT; i++);
 	} 
 }

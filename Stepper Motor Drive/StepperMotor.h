@@ -6,6 +6,11 @@
 static uint8_t stepState = 0;
 uint16_t TakeAStep(int16_t stepAmount);
 void InitStepper(void);
+void InitStepperLimits(void);
+int LeftLimitHit(void);
+int RightLimitHit(void);
+
+
 																			
 #endif
 
