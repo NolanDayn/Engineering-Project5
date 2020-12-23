@@ -30,10 +30,15 @@ int main(void){
   InitStepper();
 	InitStepperLimits();
 	
-	for(;;) {	
-		TakeAStep(1);
+	int dir = 1;
+	for(;;) {
+		TakeAStep(dir);
+		
 		int left = LeftLimitHit();
 		int right = RightLimitHit();
+		
+		dir = left ? 1 : right ? -1 : dir;
+		
 		for( uint32_t i = 0; i < DELAY_COUNT; i++);
 	} 
 }

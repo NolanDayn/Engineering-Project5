@@ -32,10 +32,9 @@ void InitStepperLimits(){
 			GPIOC->MODER &= ~(3UL<<(2*i));  //  Input(00)
 			
 			// GPIO Push-Pull: No pull-up, pull-down (00), Pull-up (01), Pull-down (10), Reserved (11)
-			//GPIOC->PUPDR &= ~(3UL<<(2*i));  // Pull-up(01)
-			//GPIOC->PUPDR |= (1UL<<(2*i));
+			GPIOC->PUPDR &= ~(3UL<<(2*i)); 
+			GPIOC->PUPDR |= (0UL<<(2*i)); //no pull-up, pull-down
 			
-			GPIOC->PUPDR   &= ~(3UL<<(2*i));  // No pull-up, no pull-down
 		}
 }
 
